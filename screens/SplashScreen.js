@@ -1,21 +1,32 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import {
   AppRegistry,
   StyleSheet,
   Text,
   Image,
-  View
+  View,
+  ActivityIndicator
 } from 'react-native';
-import ThreeDotsWave from '../components/ThreeDotsWave';
+
 
 var bg=require('../assets/Logo.png')
-const SplashScreen = () => {
+const SplashScreen = ({navigation}) => {
+  useEffect(()=>{
+    setTimeout(() => {
+        navigation.reset({
+            index: 0,
+            routes: [{ name: 'Login' }],
+        });
+    }, 2000);
+},[]);
   return (
     <View style={styles.container}>
       <Image source={bg} style={styles.hello}></Image>
-      <Grid>
-        <ThreeDotsWave/>
-      </Grid>
+      <ActivityIndicator 
+                size={24}
+                color={'#3299BB'}
+                style={{marginTop: 190}}
+            />
     </View>
   );
 };
@@ -44,6 +55,7 @@ var styles = StyleSheet.create({
     height: 150,
     width: 150,
     resizeMode: 'contain',
+    marginTop: 150
 
   }
 });

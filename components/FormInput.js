@@ -3,6 +3,7 @@ import {View, TextInput, StyleSheet} from 'react-native';
 import {windowHeight, windowWidth} from '../utils/Dimentions';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import Feather from 'react-native-vector-icons/Feather';
 
 const FormInput = ({labelValue, placeholderText, iconType, ...rest}) => {
   return (
@@ -18,6 +19,7 @@ const FormInput = ({labelValue, placeholderText, iconType, ...rest}) => {
         placeholderTextColor="#666"
         {...rest}
       />
+     
     </View>
   );
 };
