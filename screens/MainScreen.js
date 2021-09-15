@@ -23,8 +23,8 @@ export default class Design extends Component {
     super(props);
     this.state = {
       data: [
-        {id:1, title: "Entrée et Achat", option1:"Entrées",option2:"Achats", image:"https://i.ibb.co/4P9YWMb/packing-list.png", screen1: 'Entry',screen2: 'Product'},
-        {id:1, title: "Sortie et Vente", option1:"Sorties",option2:"Ventes", image:"https://i.ibb.co/DrmyGmV/invoice.png", screen1: 'SuppliersList',screen2: 'SuppliersList'},
+        {id:1, title: "Entrée et Achat", option1:"Entrées",option2:"Achats", image:"https://i.ibb.co/4P9YWMb/packing-list.png", screen1: 'Entry',screen2: 'Commande'},
+        {id:1, title: "Sortie et Vente", option1:"Sorties",option2:"Ventes", image:"https://i.ibb.co/DrmyGmV/invoice.png", screen1: 'Output',screen2: 'SalesCommande'},
         {id:2, title: "Inventaire",     image:"https://i.ibb.co/6mSsRDt/inventory.png"} ,
         {id:3, title: "Statistiques",     image:"https://i.ibb.co/HdkJMpB/statistics-1.png"} ,
       ]
@@ -49,8 +49,7 @@ export default class Design extends Component {
           style={{
             flexDirection: "row",
             marginTop: -10,
-            alignItems: "center",
-            textAlign: "center"
+           
           }}
         >
           <Text
@@ -58,7 +57,7 @@ export default class Design extends Component {
               fontFamily: "RobotoRegular",
               color: "#3299BB",
               fontSize: 26,
-              marginLeft: 100
+              marginLeft: 70,
             }}
           >
             Gestion
@@ -92,7 +91,7 @@ export default class Design extends Component {
                     {item.option1 
                     ? <Menu style={{justifyContent: 'flex-end'}}>
                     <MenuTrigger >
-                        <Icon name="ellipsis-v" size={17} color={'#bebebe'}></Icon>
+                        <Icon name="ellipsis-v" size={19} color={'#bebebe'}></Icon>
                       </MenuTrigger>
                       <MenuOptions style={{width: 130}}>
                         <MenuOption value={1} text={item.option1} onSelect={() => this.props.navigation.navigate(item.screen1)} />
@@ -118,24 +117,7 @@ export default class Design extends Component {
       </View>
     );
   }
-  getMenuView() {
-    return (
-      <MenuProvider style={{ flexDirection: 'column', padding: 30 }}>
-        <Menu >
-        <MenuTrigger onPress={() => this._onPressItem()}>
-            <Icon name="ellipsis-v" size={17} color={'#bebebe'}></Icon>
-          </MenuTrigger>
-          <MenuOptions>
-            <MenuOption value={1} text="One" />
-            <MenuOption value={2}>
-              <Text style={{ color: 'red' }}>Two</Text>
-            </MenuOption>
-            <MenuOption value={3} disabled={true} text="Three" />
-          </MenuOptions>
-        </Menu>
-      </MenuProvider>
-    );
-  }
+  
 
 }
 
@@ -148,7 +130,7 @@ const styles = StyleSheet.create({
   list: {
     //paddingHorizontal: 5,
    // backgroundColor:"#E6E6E6",
-   marginTop: 20
+   marginTop: 45
    
   },
   listContainer:{
@@ -195,7 +177,7 @@ const styles = StyleSheet.create({
     fontWeight:'bold'
   },
   subTitle:{
-    fontSize:14,
+    fontSize:11,
     flex:1,
     color:"#333",
     textAlign: 'center'
@@ -208,9 +190,9 @@ const styles = StyleSheet.create({
     height: 90,
     width: 90,
     resizeMode: 'contain',
-    marginLeft: 130,
+    marginLeft: 100,
     marginBottom: 20,
-    marginTop: -10,
+    marginTop: 10,
 
 
   },

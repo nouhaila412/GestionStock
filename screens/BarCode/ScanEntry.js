@@ -14,7 +14,7 @@ function Scan({navigation,route}){
     function _onBarcodeScanned(code){
         navigation.reset({
             index: 0,
-            routes: [{ name: 'EntryDetails', params:{'code': code, 'item' : item} }],
+            routes: [{ name: 'EntryDetails', params:{'code': code} }],
         });
     }
 

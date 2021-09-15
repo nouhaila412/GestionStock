@@ -9,7 +9,7 @@ const Background = () => {
         <View style={[styles.container,{...StyleSheet.absoluteFill}]}>
             <Svg height="100%" width="100%">
                 <Circle cx="-10" cy="0" r="140" fill="#3299BB" />
-                <Circle cx={width} cy={height} r="100" fill="#f8991d"/>
+                <Circle cx={width} cy={height} r="80" fill="#f8991d"/>
             </Svg>
         </View>
     );
@@ -18,7 +18,7 @@ const Background = () => {
 // define your styles
 const styles = StyleSheet.create({
     container: {
-      backgroundColor: '#F5FBFF'         
+      backgroundColor: '#F5FBFF',
     },
 });
 

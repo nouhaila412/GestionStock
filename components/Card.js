@@ -3,13 +3,25 @@ import { View, Text, TouchableOpacity } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input } from 'react-native-elements/dist/input/Input';
 import { useNavigation } from '@react-navigation/native';
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { getind,geton,addcomt} from "../Action";
 
-const Card = () => {
+const Card = ({prop}) => {
   const navigation = useNavigation(); 
+  const [indice,setIndice]= React.useState(1)
+  const dispatch = useDispatch();
+
+   React.useEffect(() => {
+ 
+       dispatch(getind(indice));
+                             dispatch(addcomt(prop.Qte_Cmd))
+
+     }, [dispatch]);
 
     return (
       <TouchableOpacity
-       onPress={()=>navigation.navigate('Scan')}
+       
         style={{
           paddingHorizontal: 32,
           alignSelf: "center",
@@ -52,7 +64,7 @@ const Card = () => {
             <Input
               placeholder='Désignation'
               leftIcon={{ type: 'font-awesome', name: 'edit' }}
-
+value={prop.Num_Pie}
             />
           </View>
 
@@ -68,7 +80,8 @@ const Card = () => {
               name='barcode'
               size={24}
               color="#666"
-              onPress={() => navigation.navigate('Scan')}
+          onPress={() => {navigation.navigate('ProductDetails'); setIndice(prop.Num_Ord_Lig)}}
+
             />
           </View>
         </View>
@@ -87,7 +100,7 @@ const Card = () => {
               fontSize: 16,
             }}
           >
-            Qte Commandée:
+            Qte Commandée: 
           </Text>
           <Text
             style={{
@@ -115,7 +128,8 @@ const Card = () => {
               fontSize: 16,
             }}
           >
-            200
+            {prop.Qte_Cmd}
+          
           </Text>
 
           <Text
@@ -126,7 +140,7 @@ const Card = () => {
               fontSize: 16,
             }}
           >
-            ------
+            { prop.Qte_Liv  } 
           </Text>
         </View>
 

@@ -1,7 +1,8 @@
 import React, { useContext, useState } from 'react';
 import Background from '../components/Background';
 import Feather from 'react-native-vector-icons/Feather';
-
+import {windowHeight, windowWidth} from '../utils/Dimentions';
+import { Root, Popup } from 'popup-ui'
 
 import {
   View,
@@ -25,41 +26,7 @@ const LoginScreen = ({navigation}) => {
     isValidUser: true,
     isValidPassword: true,
   });
-  const textInputChange = (val) => {
-    if (val.trim().length >= 4) {
-      setData({
-        ...data,
-        username: val,
-        check_textInputChange: true,
-        isValidUser: true
-      });
-    } else {
-      setData({
-        ...data,
-        username: val,
-        check_textInputChange: false,
-        isValidUser: false
-      });
-    }
-  }
-
-  const handlePasswordChange = (val) => {
-    if (val.trim().length >= 8) {
-      setData({
-        ...data,
-        password: val,
-        isValidPassword: true
-      });
-    } else {
-      setData({
-        ...data,
-        password: val,
-        isValidPassword: false
-      });
-    }
-  }
-  // const { colors } = useTheme();
-
+  
   const updateSecureTextEntry = () => {
     setData({
       ...data,
@@ -68,21 +35,19 @@ const LoginScreen = ({navigation}) => {
   }
 
   return (
+     
     <ScrollView contentContainerStyle={styles.container}>
+
+      
       <Background />
       <Image
         source={require('../assets/Logo.png')}
         style={styles.logo}
       />
-      <Text style={styles.text}>RAY-ONE App</Text>
-      {/* <Animatable.View
-        animation="fadeInUpBig"
-        style={[styles.footer, {
-          backgroundColor: colors.background
-        }]}
-      /> */}
+      <Text style={styles.text}>Gestion de Stock</Text>
+      
       <FormInput
-        placeholderText="Username"
+        placeholderText="Nom d'utilisateur"
         iconType="user"
         keyboardType="email-address"
         autoCapitalize="none"
@@ -90,7 +55,7 @@ const LoginScreen = ({navigation}) => {
       />
 
       <FormInput
-        placeholderText="Password"
+        placeholderText="Mot de passe"
         iconType="lock"
         data
         secureTextEntry={data.secureTextEntry ? true : false}
@@ -112,19 +77,23 @@ const LoginScreen = ({navigation}) => {
           />
         }
       </TouchableOpacity>  
-      <FormButton onPress={navigation.navigate('MainMenu')}
-        buttonTitle="Se Connecter"
-      />
+      
+          <TouchableOpacity style={styles.buttonContainer} onPress={()=>{
+                       navigation.navigate('MainMenu')
+                    }}>
+      <Text style={styles.buttonText}>Se Connecter</Text>
+    </TouchableOpacity>
+      
+        
+        
+      
 
-      <TouchableOpacity style={styles.forgotButton} onPress={() => {navigation.navigate('MainMenu') }
-      }>
-        <Text style={styles.navButtonText}>Forgot Password?</Text>
+      <TouchableOpacity style={styles.forgotButton}>
+        <Text style={styles.navButtonText}>Mot de passe oublié ?</Text>
       </TouchableOpacity>
 
+      </ScrollView>
 
-
-
-    </ScrollView>
   );
 };
 
@@ -135,26 +104,28 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',  
     padding: 20,
-    paddingTop: 70
+    paddingTop: 40,
+    height: 800
   },
   logo: {
     height: 200,
     width: 200,
     resizeMode: 'contain',
+    marginTop: -80
 
   },
   text: {
     fontFamily: 'Kufam-SemiBoldItalic',
     fontSize: 28,
     marginBottom: 5,
-    marginTop: -5,
+    marginTop: -35,
     color: '#051d5f',
     justifyContent: 'center',
     alignItems: 'center'
   },
   eye:{
-    marginTop: 5,
-    
+    marginTop: -15,
+    marginStart: 270
   },
   navButton: {
     marginTop: 15,
@@ -168,6 +139,23 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     color: '#2e64e5',
     fontFamily: 'Lato-Regular',
-    marginBottom: 10
+    marginBottom: -10,
+    marginStart: 130,
+    textDecorationLine: 'underline'
+  },buttonContainer: {
+    marginTop: 70,
+    width: '100%',
+    height: windowHeight / 15,
+    backgroundColor: '#2e64e5',
+    padding: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 3,
+  },
+  buttonText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#ffffff',
+    fontFamily: 'Lato-Regular',
   },
 });
